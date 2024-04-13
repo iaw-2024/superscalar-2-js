@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>Cliente-Servidor</title>
+	<link rel="stylesheet" type="text/css" href="../dom/domStyle.css">
+</head>
+<body>
+	<header>
+		<h1>Catalogo de productos</h1>
+		<h3>2024</h3>
+	</header>
+
+	<main id="root"></main>
+
+	<script type="text/javascript" src="../dom/dom.js"></script>
+	<script type="module">
+		let dataResponse = await fetch("/express");
+		let productData = await dataResponse.json();
+
+		let root = document.querySelector("#root");
+		let table = makeTable();
+		let header = makeTableHeader(productData.productos[0]);
+			table.appendChild(header);
+
+		for (let item of productData.productos) {
+			table.appendChild(makeRow(item));
+		}
+
+		root.appendChild(table);
+
+	</script>
+</body>
+</html>

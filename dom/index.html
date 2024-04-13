@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>DOM</title>
+	<link rel="stylesheet" type="text/css" href="domStyle.css">
+</head>
+<body>
+	<header>
+		<h1>Elementos</h1>
+		<h3>2024</h3>
+	</header>
+
+	<main id="root"></main>
+
+	<script type="text/javascript" src="data.js"></script> <!-- Datos locales -->
+	<script type="text/javascript" src="dom.js"></script>
+	<script type="text/javascript">
+		let data = getTableData();
+		
+		let root = document.querySelector("#root");
+		let table = makeTable();
+		let header = makeTableHeader(data.productos[0]);
+			table.appendChild(header);
+
+		for (let item of data.productos) {
+			table.appendChild(makeRow(item));
+		}
+
+		root.appendChild(table);
+	</script>
+</body>
+</html>
