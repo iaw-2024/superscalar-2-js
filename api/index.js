@@ -1,8 +1,11 @@
 const express = require("express");
 const app = express();
 
-app.get("/express", (req, res) => res.send("Express on Vercel!"));
-app.get("/cliente_servidor", (req, res) => res.send("Cliente Servidor on Vercel!"));
+const ejercicio_express = require("../express/con_express.js");
+
+app.get("/express", (req, res) => { res.send( ejercicio_express.getTableData() ); });
+
+app.use("/cliente_servidor", express.static("cliente_servidor"));
 app.use(express.static('public'))
 
 
